@@ -1,0 +1,14 @@
+{
+   "name": "moboxtodo",
+   "icon": "https://api.icons8.com/download/6142582549cd9be6efe4dba5480c08396158a086/iOS7/PNG/256/Very_Basic/settings-256.png",
+   "version": "1.0.0",
+   "slug": "hljandroid",
+   "sdkVersion": "15.0.0",
+   "ios": {
+     "bundleIdentifier": "org.kenpeter.moboxtodo"
+   },
+   "android": {
+     "package": "org.kenpeter.moboxtodo",
+     "versionCode": "1"
+   }
+ }
