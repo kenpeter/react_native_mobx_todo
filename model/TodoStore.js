@@ -1,6 +1,34 @@
 // need computed, mix with var
 // observe var
-import { computed, observable } from "mobx"
+import { computed, observable } from "mobx";
+import { AsyncStorage } from 'react-native';
+import Storage from 'react-native-storage';
+
+// storage
+var storage = new Storage({
+	// max 1000 item???
+	size: 1000,
+
+  // async storage from react native
+	storageBackend: AsyncStorage,
+
+	// expire time, default 1 day(1000 * 3600 * 24 milliseconds).
+	// can be null, which means never expire.
+	defaultExpires: null,
+
+	// cache data in the memory. default is true.
+	enableCache: true,
+
+	// if data was not found in storage or expired,
+	// the corresponding sync method will be invoked and return
+	// the latest data.
+	sync : {
+		// we'll talk about the details later.
+	}
+});
+
+global.storage = storage;
+
 
 // a single to do
 class Todo {
@@ -52,9 +80,16 @@ export class TodoStore {
   // we push a single to do
   // todo is an obj with value
   createTodo(value) {
-    this.todos.push(new Todo(value));
-    console.log('push...');
-    console.log(this.todos);
+    let theTodo = new Todo(value);
+    this.todos.push(theTodo);
+
+    // Save something with key only.
+    // Something more unique, and constantly being used.
+    // They are permanently stored unless you remove.
+    storage.save({
+    	key: 'todos',   // Note: Do not use underscore("_") in key!
+    	rawData: this.todos
+    });
   }
 
   // clear a todo

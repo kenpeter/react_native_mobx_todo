@@ -30,6 +30,7 @@
     "react-native-checkbox": "^1.1.0",
     "react-native-elements": "^0.10.2",
     "react-native-mobx": "^0.3.1",
-    "react-native-scalable-image": "^0.1.2"
+    "react-native-scalable-image": "^0.1.2",
+    "react-native-storage": "^0.1.5"
   }
 }

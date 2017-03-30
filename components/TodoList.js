@@ -21,6 +21,27 @@ export default class TodoList extends React.Component {
       createTodo: '',
       filterTodo: ''
     }
+
+    global.storage.load({
+    	key: 'todos',
+
+    	// autoSync(default true) means if data not found or expired,
+    	// then invoke the corresponding sync method
+    	autoSync: true,
+
+    	// syncInBackground(default true) means if data expired,
+    	// return the outdated data first while invoke the sync method.
+    	// It can be set to false to always return data provided by sync method when expired.(Of course it's slower)
+    	syncInBackground: true
+
+    }).then(res => {
+    	// found data go to then()
+    	console.log(res);
+      this.props.store.todos = res;
+    }).catch(err => {
+    	console.warn(err.message);
+    });
+
   }
 
   toggleComplete(todo) {
