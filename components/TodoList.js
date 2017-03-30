@@ -121,14 +121,27 @@ export default class TodoList extends React.Component {
             { todoLis }
           </View>
 
-          <Button
-            large
-            icon={{name: 'code'}}
-            backgroundColor='#03A9F4'
-            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10}}
-            title='SUBMIT'
-            onPress={this.submitForm}
-          />
+          <View style={{
+            flex: 1,
+            flexDirection: 'row'
+          }}>
+            <Button
+              large
+              icon={{name: 'cached'}}
+              backgroundColor='#03A9F4'
+              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10}}
+              title='SUBMIT'
+              onPress={this.submitForm}
+            />
+
+            <Button
+              large
+              icon={{name: 'code'}}
+              backgroundColor='#03A9F4'
+              buttonStyle={{borderRadius: 0, marginLeft: 10, marginRight: 0, marginBottom: 0, marginTop: 10}}
+              title='Clean up'
+            />
+          </View>
         </View>
       </ScrollView>
     );
