@@ -94,7 +94,7 @@ export default class TodoList extends React.Component {
 
           <Image
             width={Dimensions.get('window').width}
-            source={{uri: 'http://stream.shopshop.space/img/todo.jpg'}}
+            source={{uri: 'http://stream.shopshop.space/img/todo1.jpg'}}
           />
 
           <FormLabel>Create new todo</FormLabel>
