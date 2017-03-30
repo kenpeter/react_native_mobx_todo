@@ -10,6 +10,8 @@ import { List, ListItem, FormLabel, FormInput, Button } from 'react-native-eleme
 
 import Image from 'react-native-scalable-image';
 
+import CheckBox from 'react-native-checkbox';
+
 @observer
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -19,6 +21,10 @@ export default class TodoList extends React.Component {
       createTodo: '',
       filterTodo: ''
     }
+  }
+
+  toggleComplete(todo) {
+    todo.complete = !todo.complete;
   }
 
   // submit
@@ -45,7 +51,15 @@ export default class TodoList extends React.Component {
     const { clearComplete, filter, filteredTodos, todos } = this.props.store;
 
     const todoLis = filteredTodos.map( (todo, index) => {
-      return <Text key={index}>{ todo.value }</Text>;
+      return (
+        <View key={index}>
+          <CheckBox
+            label={todo.value}
+            checked={todo.complete}
+            onChange={this.toggleComplete.bind(this, todo)}
+          />
+        </View>
+      );
     });
 
     // https://github.com/facebook/react-native/issues/511
@@ -79,7 +93,12 @@ export default class TodoList extends React.Component {
             style={{ width: 300, height: 50 }}
           />
 
-          { todoLis }
+          <View style={{
+            flex: 1,
+            flexDirection: 'column'
+          }}>
+            { todoLis }
+          </View>
 
           <Button
             large
