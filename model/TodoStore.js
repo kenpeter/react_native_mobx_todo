@@ -37,8 +37,16 @@ export class TodoStore {
     // this.filter is input
     var matchesFilter = new RegExp(this.filter, "i")
     // we use this.filter input, to test a single todo.value
-    //return this.todos.filter(todo => this.filter === '' || matchesFilter.test(todo.value))
-    return this.todos;
+    return this.todos.filter((todo) => {
+      if(this.filter !== '') {
+        return matchesFilter.test(todo.value);
+      }
+      else {
+        return true;
+      }
+    });
+    //return this.todos;
+    //return this.todos.filter(() => false);
   }
 
   // we push a single to do

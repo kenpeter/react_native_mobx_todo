@@ -21,14 +21,18 @@ export default class TodoList extends React.Component {
     }
   }
 
+  // submit
   submitForm = () => {
     const { createTodo, filterTodo } = this.state;
 
     if(createTodo) {
       this.props.store.createTodo(createTodo);
     }
+    else if(filterTodo) {
+      this.props.store.filter = filterTodo;
+    }
     else {
-
+      this.props.store.filter = '';
     }
   };
 
@@ -40,7 +44,7 @@ export default class TodoList extends React.Component {
     // todos is var
     const { clearComplete, filter, filteredTodos, todos } = this.props.store;
 
-    const todoLis = this.props.store.todos.map( (todo, index) => {
+    const todoLis = filteredTodos.map( (todo, index) => {
       return <Text key={index}>{ todo.value }</Text>;
     });
 
@@ -58,7 +62,9 @@ export default class TodoList extends React.Component {
             autoFocus={true}
             value={this.state.createTodo}
             placeholder='Create new todo'
+
             onChangeText={createTodo => this.setState({createTodo})}
+            onFocus= {() => this.setState({filterTodo: ''})}
             style={{ width: 300, height: 50 }}
           />
 
@@ -68,6 +74,8 @@ export default class TodoList extends React.Component {
             value={this.state.filterTodo}
             placeholder='Filter todo'
             onChangeText={filterTodo => this.setState({filterTodo})}
+
+            onFocus= {() => this.setState({createTodo: ''})}
             style={{ width: 300, height: 50 }}
           />
 
