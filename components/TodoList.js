@@ -36,7 +36,7 @@ export default class TodoList extends React.Component {
 
     }).then(res => {
     	// found data go to then()
-    	console.log(res);
+    	// console.log(res);
       this.props.store.todos = res;
     }).catch(err => {
     	console.warn(err.message);
@@ -45,6 +45,7 @@ export default class TodoList extends React.Component {
   }
 
   toggleComplete(todo) {
+    // it actually operates with var ref
     todo.complete = !todo.complete;
   }
 
@@ -91,6 +92,11 @@ export default class TodoList extends React.Component {
           alignItems: 'center'
         }}>
 
+          <Image
+            width={Dimensions.get('window').width}
+            source={{uri: 'http://stream.shopshop.space/img/todo.jpg'}}
+          />
+
           <FormLabel>Create new todo</FormLabel>
           <TextInput
             ref='createTodo'
@@ -103,7 +109,7 @@ export default class TodoList extends React.Component {
             style={{ width: 300, height: 50 }}
           />
 
-          <FormLabel>Filter todo</FormLabel>
+
           <TextInput
             ref='filterTodo'
             value={this.state.filterTodo}
@@ -140,6 +146,7 @@ export default class TodoList extends React.Component {
               backgroundColor='#03A9F4'
               buttonStyle={{borderRadius: 0, marginLeft: 10, marginRight: 0, marginBottom: 0, marginTop: 10}}
               title='Clean up'
+              onPress={clearComplete}
             />
           </View>
         </View>
